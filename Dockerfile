@@ -21,7 +21,7 @@ RUN cd angularapp/ && npm config set legacy-peer-deps true && npm install @angul
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 
 ARG PWD_DIR
 WORKDIR /final-code
-COPY --from=backend-build ${PWD_DIR}/out/* .
+COPY --from=backend-build ${PWD_DIR}/out/* ./
 COPY --from=ui-build ${PWD_DIR}/angularapp/dist/raghavendra-app ./wwwroot/
 EXPOSE 80
 ENTRYPOINT ["dotnet","API.dll"]
