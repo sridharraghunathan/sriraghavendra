@@ -6,7 +6,7 @@ WORKDIR ${PWD_DIR}
 
 COPY ./API/*.csproj ./
 RUN dotnet restore
-COPY ./API/* .
+COPY ./API/* ./
 COPY . .
 RUN rm -Rf ${PWD_DIR}/raghavendra-app
 RUN dotnet publish SriRaghavendraApp.sln -c Release -o out
