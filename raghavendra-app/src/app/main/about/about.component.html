@@ -1,0 +1,16 @@
+<div class="about-gurukal" *ngIf="info$ | async as info">
+  <section class="side-nav">
+    <ul class="side-nav__list">
+      <li [routerLink]="'.'" [fragment]="data.id" *ngFor="let data of info" class="side-nav__item">
+        <a class="side-nav__link">{{ data.title }}</a>
+      </li>
+    </ul>
+  </section>
+
+  <div class="about-gurukal__info pd-md">
+    <section class="section__about pd-tp-md" *ngFor="let data of info" [attr.id]="data.id">
+      <h2 class="heading-secondary text-align-left">{{ data.title }}</h2>
+      <p [innerHTML]="data.description" class="paragraph"></p>
+    </section>
+  </div>
+</div>

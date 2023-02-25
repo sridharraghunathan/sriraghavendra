@@ -1,0 +1,5 @@
+@import 'styles';
+
+svg {
+  @include svg($svg-filter-gray);
+}

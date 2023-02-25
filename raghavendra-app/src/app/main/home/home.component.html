@@ -1,0 +1,80 @@
+<!-- Temple Default Image and Primary content -->
+
+<marquee class="text-scroll pd-tp-md" *ngIf="eventInfo$ | async as eventInfodata" width="100%" direction="left">
+  <b>{{ eventInfodata[0].title }}</b>
+  {{ eventInfodata[0].description }}
+</marquee>
+<main class="home">
+  <div class="home__info pd-lt-lg">
+    <h1 class="heading-primary heading-primary--main">Sri Guru Raghavendra</h1>
+    <h1 class="heading-primary heading-primary--sub">
+      <i>poojyaya raghavendraya satya dharma rataya cha bhajatam kalpa vrkshaya namatam kamadhenave</i>
+    </h1>
+    <div class="grid">
+      <blockquote class="mr-bt-sm">Without right living, right thinking will never come.</blockquote>
+      <span class="author"> <i>-by Guru Raghavendra</i></span>
+    </div>
+
+    <a (click)="onDonate()" class="btn btn-cta btn--animate pd-md">
+      <svg><use xlink:href="assets/svg/sprite.svg#icon-heart"></use></svg> DONATE</a
+    >
+  </div>
+  <div class="home__photo">
+    <img class="animation moveFromBottom" src="assets/images/sriraghavendra-main.png" alt="Sri Raghavendra Image - 1" />
+  </div>
+</main>
+
+<!-- Upcoming EVENTS in temple -->
+<section *ngIf="eventInfo$ | async as eventInfo" class="latest-updates">
+  <h2 class="heading-secondary pd-sm">Latest Updates</h2>
+  <a (click)="onSeeAll()" class="see-all mr-rt-xl">View All</a>
+  <div *ngFor="let event of eventInfo" class="moveFromBottom card">
+    <div class="event__date">
+      year | formatmypipe
+      <span> {{ event.day }}</span>
+      <span> {{ event.month }} {{ event.year }}</span>
+    </div>
+    <div class="event__info">
+      <h3 class="heading-tertiary pd-tp-sm">{{ event.title }}</h3>
+      <p class="paragraph">
+        {{ event.description }}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Temple Information -->
+<section [attr.id]="'about_temple_section'" class="about-temple">
+  <h2 class="heading-secondary pd-sm">About Temple</h2>
+  <div class="temple__dtl">
+    <img class="about-image moveFromBottom" src="assets/images/sriraghavendra-about.png" alt="Sri Raghavendra Temple Dharmapuri" />
+    <div class="temple__info mr-tp-md">
+      <p class="paragraph moveInRight">
+        Sri Raghavendra Swamy Temple is located in Bharathipuram <i>Dharmapuri</i>,constructed on <b>February 1995</b>, we are celebrating Aradhana
+        for past <b> {{ sinceConstruction }}</b> years. The Sacred Mrittika Brindavan was installed by <b>H.H.Sri Sushmindra</b> Tirtha Swamigal then
+        Head of Sri Rayar Mutt, Manthralayam and <b>H.H. Sri Vijnana Nidhi</b> tirtha Swamigal then Head of Mulubagal Sri SriPadaraja Swamigal Mutt.
+        The Swamijis of Sri Vyasaraja Mutt,Uttaradi Mutt, Sri Madhva Tirtharu Mutt, Udupi Sri Admaru/Palimaru/Kaniyuru Mutt had visited here and
+        performed Samasthana pooja and blessed the bhakthas duly giving enlightening lectures.
+      </p>
+      <p class="paragraph moveInRight">
+        Sri Madhwa Navami and the Aradhanas of Sri Raghavendra Swamigal and Sri Sujnanendra Tirtha Swmamigal are being celebrated in this mutt in a
+        fitting manner.Several eminent pundits had given their lectures here.we have sponsored the
+        <b><i>Lakshavritti Hari Vayu stuti Purascharana parayana</i></b> in which more than one thousand devotees from all over Tamilnadu and
+        Bangalore and surroundings participated.This occasion was graced by <b><i>Sri Vidhya Sagara Madhava</i></b> tirtharu reigning head of
+        Thambihalli Mutt.The sacred <b><i>Bruhati Sahasra Homa</i></b> was performed in this mutt with the participation of pundits and Vidhyartis of
+        different Vidya Peethas. It need special mention that women devotees of Dharmapuri and nearby areas guided by Smt.Saraswati Sripathy, Editor
+        of Tattva Vaada keep rendering <b><i>Madhwa Naama and Hari Kathamruta Saara</i></b> on this occasion.
+      </p>
+      <p class="paragraph moveInRight">
+        The Mutt premises are a boon to the devotees it is catering to their religious and social needs.we also perform special poojas on
+        <b>DHANUR MAASA POOJA</b> to supreme Lord <b>Sri Moola Rama Devaru.</b>
+        Every year during sri guru raghavedra swamy aradhana celebration, we do annadhana to devotees, about 400 to 800 every day. During covid times
+        as well, we conducted annadhana for 2 months for many homeless people, sanitary workers and unwell people's.
+      </p>
+      <p class="paragraph moveInRight mr-bt-md">
+        Every year during sri guru raghavedra swamy aradhana celebration, we do annadhana to devotees, about <b><i>400 to 800 every day</i></b
+        >. During covid times as well, we conducted annadhana for 2 months for many homeless people, sanitary workers and unwell people's.
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+@import 'styles';
+
+.container-google {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba($color-text-gray-80, 0.8);
+  z-index: $z-index-md;
+}
+
+.google-signup {
+  transition: transform 0.1s cubic-bezier(0.215, 0.61, 0.355, 1) 0.2s;
+}
+
+.btn-google {
+  padding: 1.5rem;
+  color: $color-text-gray-80;
+  background-color: $color-white;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  align-items: center;
+  z-index: $z-index-md-next;
+  transition: transform 0.3s;
+  @include abscenter;
+  position: fixed;
+
+  @media only screen and (max-width: $bp-small) {
+    @include absquarter;
+  }
+}
+
+.btn-google:hover,
+.btn-google:active {
+  transform: translate(-50%, -50%) scale(1.1);
+  color: map-get($color-primary, dark);
+  border: none;
+  background-color: $color-white;
+
+  @media only screen and (max-width: $bp-small) {
+    transform: translate(-18%, -18%) scale(1.1);
+  }
+}
+
+svg {
+  @include svg($svg-filter-gray);
+}
+
+svg:hover,
+svg:active {
+  @include svg($svg-filter-theme);
+}

@@ -1,0 +1,30 @@
+@import 'styles';
+
+// Form for the latest events
+.latest__form {
+  display: grid;
+  justify-content: center;
+}
+
+.latest-info {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(20rem, 1fr));
+  grid-row-gap: 1rem;
+}
+
+// Uploading the File
+.upload {
+  background-color: $color-white;
+  display: grid;
+  grid-template-rows: max-content;
+
+  &__photolbl {
+    padding-left: 1rem;
+    color: $color-text-gray-40;
+  }
+
+  &__file {
+    padding: 2rem;
+    justify-self: flex-end;
+  }
+}

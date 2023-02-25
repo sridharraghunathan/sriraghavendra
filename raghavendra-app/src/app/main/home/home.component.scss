@@ -1,0 +1,177 @@
+@import 'styles';
+
+.text-scroll {
+  background-color: $color-bg-gray-20;
+  font-size: $medium-font-size;
+  display: block;
+}
+//Home section
+.home {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  min-height: 80vh;
+  background-color: $color-bg-gray-20;
+
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  &__info {
+    display: grid;
+    justify-items: start;
+    grid-row-gap: 2.5rem;
+    // grid-template-columns: 0.8fr;
+
+    @media only screen and (max-width: $bp-small) {
+      grid-template-columns: 1fr;
+      margin: auto;
+      transform: translateY(-2rem);
+    }
+  }
+
+  &__photo {
+    display: grid;
+    justify-items: center;
+    @media only screen and (max-width: $bp-small) {
+      transform: translateY(0);
+      grid-row: 1/2;
+    }
+
+    img {
+      width: 40vw;
+      transform: translateY(-3rem);
+
+      @media only screen and (max-width: $bp-small) {
+        transform: translateY(0);
+        width: 60vw;
+      }
+    }
+  }
+}
+
+.author {
+  justify-self: center;
+}
+
+//// Latest Updates Section
+.see-all {
+  display: flex;
+  justify-content: flex-end;
+  font-size: $medium-font-size;
+  color: map-get($color-primary, medium);
+  transition: all 0.5s;
+  text-transform: capitalize;
+}
+
+.see-all:hover,
+.see-all:active {
+  transform: scale(1.02);
+}
+
+.card {
+  box-shadow: $box-shawdow-large;
+  background-color: $color-white;
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.5fr) minmax(25rem, 1.5fr);
+  padding: 2rem;
+  transition: transform 0.2s;
+
+  & > .event__date {
+    align-self: center;
+    justify-self: center;
+    border-radius: 50%;
+    height: 10rem;
+    width: 10rem;
+    background-color: $color-bg-gray-30;
+    color: map-get($color-primary, medium);
+
+    @include flexcenter(column);
+    font-size: $small-font-size;
+    text-transform: uppercase;
+  }
+
+  .event__info {
+    align-self: center;
+    justify-self: flex-start;
+  }
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.latest-updates .card {
+  margin: 0.8rem 1.5rem;
+}
+
+// Temple Section
+.about-temple {
+  margin: 1rem;
+  background-color: $color-bg-gray-20;
+}
+
+.temple__dtl {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  justify-items: center;
+  background-color: $color-bg-gray-20;
+
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 1fr;
+  }
+
+  .about-image {
+    align-self: start;
+
+    @media only screen and (max-width: $bp-small) {
+      align-self: end;
+    }
+  }
+
+  .temple__info {
+    align-self: flex-start;
+
+    @media only screen and (max-width: $bp-small) {
+      margin: 2rem;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      margin: 2rem;
+    }
+  }
+}
+
+/// Override defaults
+.btn {
+  @media only screen and (max-width: $bp-small) {
+    margin-bottom: 2rem;
+  }
+}
+
+.btn--animate {
+  animation: moveFromBottom 0.5s;
+  color: $color-white;
+  background-color: map-get($color-primary, dark);
+}
+
+.btn--animate:hover > svg,
+.btn--animate:active > svg {
+  @include svg($svg-filter-gray, 1.2rem);
+}
+
+svg {
+  @include svg($svg-filter-white, 1.2rem);
+}
+
+p.paragraph {
+  padding-right: 5rem;
+  line-height: 2;
+  @media only screen and (max-width: $bp-large) {
+    padding-right: 0.5rem;
+  }
+}

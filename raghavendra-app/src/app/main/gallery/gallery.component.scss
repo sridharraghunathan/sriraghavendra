@@ -1,0 +1,19 @@
+////Gallery
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 1rem;
+  padding: 1rem;
+
+  .image {
+    --dimension: 100%;
+    height: var(--dimension);
+    width: var(--dimension);
+    aspect-ratio: 1;
+    transition: transform 0.4s;
+  }
+
+  .image:hover {
+    transform: scale(1.1) translateZ(10px);
+  }
+}

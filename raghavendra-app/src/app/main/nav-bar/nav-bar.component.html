@@ -1,0 +1,54 @@
+<!--  Navigation Section of the Application -->
+<nav class="navigation">
+  <div class="navigation__info">
+    <img [routerLink]="['home']" class="navigation__logo" src="assets/images/sriraghavendra-logo.png" />
+
+    <div *ngIf="templeInfo" class="navigation__contact">
+      <label> Contact Number </label>
+      <label class="navigation__contact--number">{{ templeInfo['Phone'][0] }}</label>
+    </div>
+  </div>
+  <!-- Navigation List section of the APplication -->
+  <ul class="navigation__list">
+    <li routerLinkActive="router-active" [routerLink]="['home']" class="navigation__item"><a class="navigation__link">Home</a></li>
+    <li routerLinkActive="router-active" [routerLink]="['about']" class="navigation__item"><a class="navigation__link">about us</a></li>
+    <li routerLinkActive="router-active" [routerLink]="['seva']" class="navigation__item"><a class="navigation__link">sevas </a></li>
+    <li routerLinkActive="router-active" [routerLink]="['gallery']" class="navigation__item"><a class="navigation__link">gallery </a></li>
+    <li routerLinkActive="router-active" [routerLink]="['contacts']" class="navigation__item"><a class="navigation__link">contact us</a></li>
+    <li routerLinkActive="router-active" *ngIf="status.isAdmin" [routerLink]="['admin']" class="navigation__item">
+      <a class="navigation__link">admin</a>
+    </li>
+  </ul>
+
+  <a *ngIf="!status.isLoggedin" (click)="onLogin()" class="btn btn-login mr-rt-xl">Login</a>
+
+  <!-- User Signed Section -->
+  <a *ngIf="status.isLoggedin" class="user">
+    <span class="user__circle">{{ socialUser.firstName | slice: 0:1 }} </span>
+    <div *ngIf="status.isLoggedin" class="profile">
+      <a class="profile__name">
+        <span class="user__circle">{{ socialUser.firstName | slice: 0:1 }} </span>
+        <div class="user__info-dtl">
+          <span class="name"> {{ socialUser.firstName }} </span>
+          <span class="email"> {{ socialUser.email }}</span>
+        </div>
+      </a>
+      <span class="line"></span>
+      <a class="profile__edit">
+        <svg>
+          <use xlink:href="assets/svg/sprite.svg#icon-user"></use>
+        </svg>
+        <span>Edit Profile</span></a
+      >
+      <a (click)="onLogout()" class="profile__logout">
+        <svg>
+          <use xlink:href="assets/svg/sprite.svg#icon-exit"></use>
+        </svg>
+        <span>Logout</span></a
+      >
+    </div>
+  </a>
+</nav>
+
+<!-- Google Sign In section -->
+<app-google-signin (close)="status.loginClicked = $event" *ngIf="status.loginClicked"></app-google-signin>

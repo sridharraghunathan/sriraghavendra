@@ -1,0 +1,98 @@
+@import 'styles';
+
+/// Main Admin Section
+.admin {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  @media only screen and (max-width: $bp-medium-next) {
+    flex-direction: column;
+  }
+}
+
+//Side Navigation Section
+.side-nav {
+  background-color: $color-bg-gray-30;
+  box-shadow: $box-shawdow-medium;
+  color: map-get($color-primary, dark);
+  flex: 0 0 20%;
+
+  @media only screen and (max-width: $bp-medium-next) {
+    flex: 0;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    @media only screen and (max-width: $bp-medium-next) {
+      flex-direction: row;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 1px;
+
+    @media only screen and (max-width: $bp-medium-next) {
+      flex: 1;
+      margin: 0;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    svg {
+      @include svg($svg-filter-green, 2rem);
+
+      @media only screen and (max-width: $bp-smallest) {
+        margin: 0;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  &__item::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    margin-bottom: 1px;
+    background-color: $color-text-gray-80;
+    transition: transform 0.3s, width 0.2s 0.3s;
+    transform: scaleY(0);
+  }
+
+  .router-active {
+    background-color: $color-text-gray-80;
+  }
+
+  &__item:hover::before,
+  &__item:active::before {
+    width: 100%;
+    transform: scaleY(1);
+  }
+
+  &__link {
+    text-decoration: none;
+    color: map-get($color-primary, dark);
+    color: $color-accent-green;
+    z-index: $z-index-md-next;
+  }
+}
+
+// Main Container where the router gets injected
+.profile-container {
+  flex: 1;
+  flex-basis: auto;
+  background-color: $color-bg-gray-20;
+}

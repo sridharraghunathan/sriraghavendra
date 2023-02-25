@@ -1,0 +1,10 @@
+@import 'styles';
+
+footer {
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background-color: map-get($color-primary, medium);
+  color: white;
+}

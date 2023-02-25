@@ -1,0 +1,104 @@
+<!-- Button Selection for the Donation / Seva -->
+<div class="btn__group">
+  <button type="submit" (click)="isInitialStatus = true" class="btn btn-cta mr-bt-sm">
+    For Seva
+    <svg class="arrow-submit">
+      <use xlink:href="assets/svg/sprite.svg#icon-arrow-right2"></use>
+    </svg>
+  </button>
+  <button type="submit" (click)="isInitialStatus = false" class="btn btn-cta mr-bt-sm">
+    To Donate
+    <svg class="arrow-submit">
+      <use xlink:href="assets/svg/sprite.svg#icon-arrow-right2"></use>
+    </svg>
+  </button>
+</div>
+
+<!-- Seva List Tab -->
+<section *ngIf="isInitialStatus && (sevaList$ | async)?.length > 0" class="sevas">
+  <h2 class="heading-secondary mr-tp-md">Seva List</h2>
+  <h3 class="heading-tertiary pd-lt-sm">Select Sevas by clicking the item, to uncheck click the same item</h3>
+  <div class="card">
+    <div *ngFor="let seva of sevaList$ | async" (click)="onSelection(seva, $event)" class="moveFromBottom card__seva">
+      <div>
+        <span class="tick-mark mr-rt-md">&#10003;</span>
+        <span>{{ seva.sevaName }}</span>
+      </div>
+
+      <span>{{ seva.description }}</span>
+      <span>&#8377;{{ seva.amount }}</span>
+    </div>
+  </div>
+</section>
+
+<!-- DONATION Tab -->
+<section class="pd-bt-md" *ngIf="!isInitialStatus">
+  <h2 class="heading-secondary mr-tp-md mr-bt-md">Donation List</h2>
+  <div class="card__donation" [ngClass]="{ active: !isInitialStatus }">
+    <form #donationForm="ngForm" class="card__form">
+      <div class="form__group">
+        <label for="construction">Construction</label>
+        <input
+          (blur)="onAmountEntered(donationForm)"
+          placeholder="Amount"
+          class="input-text"
+          autocomplete="on"
+          type="text"
+          name="construction"
+          ngModel
+        />
+      </div>
+      <div class="form__group">
+        <label for="infrastructure">Infrastructure(chairs,tables,rooms,etc..)</label>
+        <input (blur)="onAmountEntered(donationForm)" placeholder="Amount" class="input-text" type="text" name="infrastructure" ngModel />
+      </div>
+
+      <div class="form__group">
+        <label for="annadhana">Annadhana</label>
+        <input (blur)="onAmountEntered(donationForm)" placeholder="Amount" class="input-text" type="text" name="Annadhana" ngModel />
+      </div>
+
+      <div class="form__group">
+        <label for="dailyuse">Flowers/Milk(1 Month)</label>
+        <input (blur)="onAmountEntered(donationForm)" placeholder="Amount" class="input-text" type="text" name="dailyuse" ngModel />
+      </div>
+
+      <div class="form__group">
+        <label for="aradhana">Raghavendra Swamy Aradhana</label>
+        <input (blur)="onAmountEntered(donationForm)" placeholder="Amount" class="input-text" type="text" name="aradhana" ngModel />
+      </div>
+      <div class="form__group">
+        <label for="other">Other</label>
+        <input (blur)="onAmountEntered(donationForm)" placeholder="Amount" class="input-text" type="text" name="other" ngModel />
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Calculation Section -->
+<section class="card-selected withbottom-sticky pd-tp-sm">
+  <div class="btn__group btn__override">
+    <button (click)="onProceed()" type="submit" [disabled]="isDisabled" [ngClass]="{ isDisabled: isDisabled }" class="btn btn-cta mr-bt-sm mr-rt-md">
+      proceed
+      <svg class="arrow-submit">
+        <use xlink:href="assets/svg/sprite.svg#icon-arrow-right2"></use>
+      </svg>
+    </button>
+
+    <button (click)="onReset()" type="submit" class="btn btn-cta btn-outline mr-bt-sm">
+      Reset
+      <svg class="arrow-submit">
+        <use xlink:href="assets/svg/sprite.svg#icon-arrow-right2"></use>
+      </svg>
+    </button>
+  </div>
+  <h3 class="heading-tertiary pd-bt-md">Selected Seva List Summary</h3>
+  <div *ngFor="let selectedItem of consolidatedList" class="card-selected__order">
+    <span class="seva-name">{{ selectedItem.sevaName }}:</span>
+    <span>&#8377;{{ selectedItem.amount }}</span>
+  </div>
+  <div class="total">
+    <label>Total :</label>
+    <label class="amount">&#8377;{{ getTotal }}</label>
+  </div>
+</section>

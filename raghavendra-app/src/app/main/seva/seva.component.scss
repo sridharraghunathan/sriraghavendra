@@ -1,0 +1,137 @@
+@import 'styles';
+
+.sevas {
+  background-color: $color-bg-gray-20;
+}
+
+///Seva List
+.card {
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-rows: 10rem;
+  grid-auto-rows: 10rem;
+  padding: 3rem;
+
+  &__seva {
+    background-image: linear-gradient(to right bottom, map-get($color-primary, dark), map-get($color-primary, medium));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: $box-shawdow-medium;
+    transition: transform 0.5s ease-in-out;
+    color: $color-white;
+
+    & span:first-child {
+      font-size: $medium-font-size;
+      font-weight: bold;
+    }
+
+    & span:last-child {
+      font-size: $default-font-size;
+      font-weight: bold;
+    }
+
+    &:hover,
+    &:active {
+      background-image: none;
+      background-color: $color-white;
+      color: map-get($color-primary, dark);
+      color: $color-accent-red;
+    }
+  }
+}
+
+///Selected Item
+.active-selection {
+  background-image: none;
+  background-color: $color-white;
+  border: 1px solid $color-accent-red;
+  color: $color-accent-red;
+}
+
+.tick-mark {
+  color: map-get($color-primary, dark);
+  display: none;
+  font-size: 2rem;
+}
+.active {
+  display: inline-block;
+}
+
+// .card__seva.active-selection:hover > div > span ,
+// .card__seva.active-selection:active > div > span{
+//   display: inline-block;
+// }
+
+//Button group
+.btn__group {
+  display: grid;
+  grid-template-columns: repeat(2, 15rem);
+  grid-column-gap: 2rem;
+  padding: 2rem;
+  justify-items: end;
+  justify-content: end;
+
+  @media only screen and (max-width: $bp-medium) {
+    justify-items: center;
+    justify-content: center;
+  }
+}
+
+.btn__override {
+  justify-items: center;
+  justify-content: center;
+}
+
+///DONATION
+.card__donation {
+  display: grid;
+  justify-content: center;
+
+  @media only screen and (max-width: $bp-small) {
+    justify-content: stretch;
+    padding: 2rem;
+  }
+}
+
+/// Donation Form
+.card__form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1.2rem;
+}
+
+.form__group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 5rem;
+  align-items: center;
+
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: 1fr;
+  }
+
+  label {
+    font-size: $default-font-size;
+  }
+}
+
+.input-text {
+  background-color: $color-bg-gray-30;
+}
+
+// /// Selection List Calculation Moved to Reuable component
+
+//Btn Group
+
+.btn__group {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat();
+}
+
+.isDisabled {
+  background-color: $color-bg-gray-20;
+}

@@ -1,0 +1,56 @@
+<!-- Search Category Input section -->
+<div class="search pd-md">
+  <div class="search__category">
+    <label class="mr-bt-md">Category</label>
+    <select (change)="onSelectedCategory($event.target.value)" class="drop-down">
+      <option>Select Category</option>
+      <option *ngFor="let category of categories" [value]="category.value">{{ category.key }}</option>
+    </select>
+  </div>
+
+  <div class="search__value">
+    <label class="mr-bt-md">search value</label>
+    <input [(ngModel)]="searchObject.value" type="text" class="input-text" />
+  </div>
+  <a (click)="onSearch()" class="btn btn-cta mr-lt-sm flex-box">
+    <svg>
+      <use xlink:href="assets/svg/sprite.svg#icon-search"></use>
+    </svg>
+    search</a
+  >
+</div>
+
+<a class="btn btn-contact pd-md" [routerLink]="['new']">
+  <svg>
+    <use xlink:href="assets/svg/sprite.svg#icon-folder-plus"></use>
+  </svg>
+  Add Record</a
+>
+<!-- Table to display the Aradhana Information -->
+<table id="table-contact" class="mr-md">
+  <tr>
+    <th>Id</th>
+    <th>FullName</th>
+    <th>MobileNumber</th>
+    <th>Email</th>
+    <th>Edit</th>
+    <th>View</th>
+  </tr>
+  <tr *ngFor="let user of userData$ | async">
+    <td>{{ user.id }}</td>
+    <td>{{ user.fullName }}</td>
+    <td>{{ user.mobileNumber }}</td>
+    <td>{{ user.email }}</td>
+
+    <td (click)="onNavigate(user, 'edit')">
+      <svg>
+        <use xlink:href="assets/svg/sprite.svg#icon-pencil"></use>
+      </svg>
+    </td>
+    <td (click)="onNavigate(user, 'view')">
+      <svg>
+        <use xlink:href="assets/svg/sprite.svg#icon-eye"></use>
+      </svg>
+    </td>
+  </tr>
+</table>

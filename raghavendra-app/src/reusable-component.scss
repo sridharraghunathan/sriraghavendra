@@ -1,0 +1,387 @@
+@import 'utility';
+///Colors
+$color-primary: (
+  dark: #ff7b00,
+  medium: #ff9500,
+  light: #ffaa00,
+);
+
+//SVG
+$svg-filter-theme: invert(66%) sepia(21%) saturate(2510%) hue-rotate(356deg) brightness(100%) contrast(110%);
+$svg-filter-green: invert(59%) sepia(17%) saturate(1206%) hue-rotate(77deg) brightness(101%) contrast(99%);
+$svg-filter-gray: invert(16%) sepia(15%) saturate(35%) hue-rotate(314deg) brightness(104%) contrast(82%);
+$svg-filter-white: invert(95%) sepia(0%) saturate(20%) hue-rotate(320deg) brightness(104%) contrast(107%);
+
+// accent
+$color-accent-red: #fe8668;
+$color-accent-green: #51b960;
+$color-accent-yellow: #ffd814;
+
+//text
+$color-text-gray-100: rgba(0, 0, 0, 0.95);
+$color-text-gray-80: #3a3a3a;
+$color-text-gray-60: #a6a6aa;
+$color-text-gray-50: #cccccc;
+$color-text-gray-40: #cbcbd4;
+$color-white: #fff;
+
+//background
+$color-bg-white: #fff;
+$color-bg-gray-20: #f8f7fa;
+$color-bg-gray-30: #f2f2f2;
+
+//boxshawdow
+$box-shawdow-light: 0px 1px 3px rgba(0, 0, 0, 0.15);
+$box-shawdow-medium: 0px 1px 3px rgba(0, 0, 0, 0.15);
+$box-shawdow-large: 0px 1px 3px rgba(0, 0, 0, 0.15);
+
+//z-index
+$z-index-lw: 10;
+$zindex-lw-next: 20;
+$z-index-md: 30;
+$z-index-md-next: 40;
+$z-index-lg: 100;
+$z-index-lg-next: 110;
+$z-index-xlg: 1000;
+$z-index-xlg-next: 2000;
+$z-index-xxlg: 10000;
+
+///Font Size
+$small-font-size: 1.3rem;
+$default-font-size: 1.6rem;
+$medium-font-size: 2rem;
+$medium-next-font-size: 2.5rem;
+$larger-font-size: 3.5rem;
+$largest-font-size: 5.5rem;
+
+/// BreakPoints
+$bp-largest: 1200px;
+$bp-large: 1000px;
+$bp-medium-next: 900px;
+$bp-medium: 800px;
+$bp-small: 600px;
+$bp-smallest: 450px;
+
+///Buttons
+.btn {
+  color: inherit;
+  background-color: inherit;
+  border: 1px solid inherit;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: all 0.3s;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:active {
+  color: inherit;
+  background-color: inherit;
+}
+
+.btn:hover > .arrow-submit,
+.btn:active > .arrow-submit {
+  transform: translateX(15px);
+}
+
+.btn-cta {
+  padding: 1.5rem;
+  background-color: $color-accent-yellow;
+  color: $color-text-gray-80;
+  font-weight: 600;
+  align-self: flex-end;
+  flex: 1;
+  border: 1px solid $color-accent-yellow;
+  box-shadow: $box-shawdow-light;
+}
+
+.btn-outline {
+  background-color: white;
+}
+
+.btn-outline:hover,
+.btn-outline:active {
+  background-color: map-get($color-primary, medium);
+}
+
+.btn-cta {
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .arrow-submit {
+    margin-left: 1rem;
+    @include svg($svg-filter-gray, 1.5rem);
+  }
+}
+
+.btn-contact {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+
+  svg {
+    @include svg($svg-filter-theme, 1rem);
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: map-get($color-primary, medium);
+    transform: ScaleY(1.05);
+  }
+}
+
+/// Form Elements
+.drop-down {
+  display: inline-block;
+  padding: 2rem !important;
+  border-radius: 2px;
+  font-size: $default-font-size;
+  color: $color-accent-red;
+  font-weight: 400;
+  border: none;
+}
+
+.drop-down select:active,
+select:focus {
+  outline: none;
+  box-shadow: none;
+  border: 0 !important;
+}
+
+.input-text {
+  color: $color-text-gray-80;
+  border: none;
+  padding: 2rem;
+  font-weight: bold;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.input-text:focus {
+  outline-color: $color-text-gray-40;
+}
+
+textarea:disabled,
+textarea[disabled],
+input:disabled,
+input[disabled] {
+  border: 1px solid $color-text-gray-50;
+  background-color: $color-text-gray-50;
+  color: $color-text-gray-80;
+}
+
+label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: inherit;
+  font-family: inherit;
+}
+
+////Table
+#table-contact {
+  font-family: inherit;
+  border-collapse: collapse;
+  width: 95%;
+  border: 2px solid map-get($color-primary, light);
+
+  @media only screen and (max-width: $bp-small) {
+    width: 90%;
+    margin: 0;
+    margin-left: 0.5rem;
+  }
+}
+
+#table-contact td {
+  padding: 8px;
+  border: 1px solid $color-text-gray-60;
+}
+
+#table-contact tr:hover,
+#table-contact tr:active {
+  background-color: $color-white;
+}
+
+#table-contact th {
+  padding: 8px;
+  background-color: map-get($color-primary, light);
+  color: $color-white;
+}
+
+#table-contact tr th:first-of-type,
+#table-contact tr td:first-of-type {
+  display: none;
+}
+
+@media only screen and (max-width: $bp-small) {
+  #table-contact tr th:nth-child(4),
+  #table-contact tr td:nth-child(4) {
+    display: none;
+  }
+}
+
+#table-contact tr td:last-of-type,
+#table-contact tr td:nth-last-child(2) {
+  text-align: center;
+}
+
+svg {
+  @include svg($svg-filter-theme);
+}
+
+/// Reusable Search
+.search {
+  display: flex;
+  align-content: flex-start;
+  flex-wrap: wrap;
+
+  & > * {
+    margin: 1rem;
+  }
+
+  &__category,
+  &__value {
+    display: flex;
+    flex-direction: column;
+    flex: 3 1 300px;
+  }
+}
+
+///Grid Reusable compoenent
+
+.flex-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+}
+
+.full-length {
+  grid-column: 1/-1;
+}
+
+/// Spinner
+.loading {
+  @include abscenter;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 220px;
+  padding: 3rem;
+  background-color: $color-white;
+  box-shadow: $box-shawdow-medium;
+  z-index: $z-index-xxlg;
+  position: fixed;
+}
+
+.spinner {
+  display: inline-block;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 6px solid $color-text-gray-40;
+  border-top-color: $color-accent-red;
+  border-right-color: $color-accent-red;
+  animation: spinner 1s ease-in-out infinite;
+  -webkit-animation: spinner 1s ease-in-out infinite;
+}
+
+///quote
+
+blockquote::before,
+blockquote::after {
+  content: open-quote;
+  font-size: $larger-font-size;
+  color: map-get($color-primary, medium);
+}
+blockquote::after {
+  content: close-quote;
+}
+blockquote {
+  quotes: '“' '”' '‘' '’';
+  line-height: 0.9;
+  color: map-get($color-primary, medium);
+}
+
+.player {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+}
+
+/// Form Component for Email
+.email-card {
+  z-index: $z-index-xlg-next;
+  padding: 0 0.5rem;
+  position: fixed;
+  border: 1px solid $color-bg-gray-20;
+  background-color: $color-bg-gray-30;
+  box-shadow: $box-shawdow-large;
+  transition: opacity 0.5s;
+  opacity: 0;
+
+  &__form {
+    display: grid;
+    grid-template-columns: 40rem;
+    grid-row-gap: 1rem;
+  }
+}
+
+.email-card.active {
+  @include abscenter;
+  opacity: 1;
+}
+
+//Calculation component
+/// Selection List Calculation
+.withbottom-sticky {
+  bottom: 0;
+}
+.card-selected {
+  position: sticky;
+
+  // z-index: $z-index-lg;
+  background-color: $color-white;
+  border-top: 5px solid map-get($color-primary, medium);
+  display: grid;
+  justify-items: center;
+
+  .card-selected__order,
+  .total {
+    display: grid;
+    grid-template-columns: minmax(25rem, 35rem) 5rem;
+    grid-column-gap: 2rem;
+
+    .seva-name {
+      text-transform: uppercase;
+    }
+  }
+
+  .total {
+    border-top: 1px solid $color-text-gray-40;
+  }
+
+  .total > label.amount {
+    justify-self: end;
+    font-size: $larger-font-size;
+  }
+}
+
+// Close Button for the Email Password Card
+.close-button {
+  @include svg($svg-filter-gray, 3rem);
+  position: absolute;
+  right: 5px;
+  top: 10px;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}

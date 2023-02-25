@@ -1,0 +1,81 @@
+@import 'styles';
+
+//////////////About Main Section
+.about-gurukal {
+  --space: 25rem;
+  display: flex;
+
+  @media only screen and (max-width: $bp-small) {
+  flex-direction: column;
+  }
+
+  /// Information of the Sri Rayuru
+
+  &__info {
+    margin-left: var(--space);
+    padding-left: 2rem;
+
+    @media only screen and (max-width: $bp-small) {
+      margin: 0;
+    }
+  }
+}
+
+///////////// navigation of Guru
+.side-nav {
+  position: fixed;
+  left: 0;
+  max-width: var(--space);
+  color: white;
+  background-color: map-get($color-primary, dark);
+  box-shadow: $box-shawdow-medium;
+
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+
+  @media only screen and (max-width: $bp-small) {
+    position: static;
+    height: auto;
+    max-width: 100%;
+    justify-content: stretch;
+
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    flex:1;
+  }
+
+  &__item {
+    display: flex;
+    position: relative;
+    padding: 1rem;
+  }
+
+  &__item::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    margin-bottom: 1px;
+    background-color: map-get($color-primary, medium);
+    transition: transform 0.3s, width 0.2s 0.3s;
+    transform: scaleY(0);
+  }
+
+  &__item:hover::before,
+  &__item:active::before {
+    width: 100%;
+    transform: scaleY(1);
+  }
+
+  &__link {
+    text-decoration: none;
+    z-index: $z-index-md-next;
+  }
+}

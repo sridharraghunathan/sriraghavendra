@@ -1,0 +1,27 @@
+<h2 class="heading-secondary pd-sm mr-bt-sm text-align-center">Important Events</h2>
+<!-- Form to send the data back to API for the LATEST events -->
+<form class="latest__form" [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+  <section class="latest-info">
+    <app-text-input class="full-length" formControlName="title" [label]="'Title'"></app-text-input>
+    <app-text-input
+      class="full-length"
+      [type]="'textarea'"
+      formControlName="description"
+      [type]="'textarea'"
+      [label]="'Description'"
+    ></app-text-input>
+    <!-- <div class="upload full-length">
+      <label class="upload__photolbl">Upload Image</label>
+      <input type="file" #file class="upload__file" placeholder="choose file" (change)="uploadFile(file.files)" />
+    </div> -->
+
+    <app-text-input class="full-length" formControlName="eventDate" [type]="'date'" [label]="'Event Date'"></app-text-input>
+  </section>
+
+  <button type="submit" [disabled]="!eventForm.valid" class="btn btn-cta mr-bt-sm">
+    Upcoming Events
+    <svg class="arrow-submit">
+      <use xlink:href="assets/svg/sprite.svg#icon-arrow-right2"></use>
+    </svg>
+  </button>
+</form>

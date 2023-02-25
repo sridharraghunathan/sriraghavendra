@@ -1,0 +1,236 @@
+@import 'styles';
+// Navigation Header
+.navigation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  z-index: $z-index-xlg;
+  background-color: $color-white;
+  color: $color-text-gray-80;
+  font-weight: 700;
+  width: 100vw;
+  position: fixed;
+
+  // Information about contact + Logo container
+  &__info {
+    display: flex;
+    max-width: 30%;
+    min-width: 18%;
+    justify-content: space-between;
+
+    @media only screen and (max-width: $bp-small) {
+      order: 1;
+    }
+  }
+
+  &__logo {
+    width: 5rem;
+    height: 5rem;
+    margin-top: 2rem;
+
+    @media only screen and (max-width: $bp-small) {
+      margin-right: 5rem;
+      transform: translateY(-10px);
+    }
+  }
+
+  // Contact Details of the temple
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s;
+    min-width: 10rem;
+    align-self: center;
+
+    &--number {
+      color: map-get($color-primary, medium);
+    }
+
+    &:hover,
+    &:active {
+      transform: scale(1.2);
+    }
+  }
+
+  // Navigation List
+  &__list {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: $small-font-size;
+    letter-spacing: 1px;
+    min-width: 40%;
+
+    @media only screen and (max-width: $bp-small) {
+      order: 3;
+      flex-wrap: wrap;
+      padding: 0 0.5rem;
+    }
+  }
+
+  // Navigation Individual items
+  &__item {
+    padding: 0 1.5rem;
+    transition: transform 0.3s;
+
+    &:hover,
+    &:active {
+      transform: scale(1.1);
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      background-color: map-get($color-primary, dark);
+      width: 0%;
+      height: 4px;
+      transition: width 0.2s 0.3s;
+      margin-top: 1rem;
+    }
+
+    &:not(.router-active):hover::after {
+      width: 100%;
+    }
+  }
+
+  // Navigation Items Link
+  &__link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+  }
+}
+
+.router-active {
+  background-color: $color-bg-gray-30;
+}
+
+//Signed In section
+.user {
+  @include userprofile(3.5rem);
+  position: relative;
+  color: $color-white;
+
+  @media only screen and (max-width: $bp-small) {
+    margin-right: 2rem;
+  }
+
+  @media only screen and (max-width: $bp-smallest) {
+    order: 2;
+    margin-right: 0;
+  }
+
+  &:hover,
+  &:active {
+    background-color: $color-text-gray-100;
+    color: $color-text-gray-40;
+  }
+}
+
+.user__circle {
+  height: 100%;
+  width: 100%;
+  @include flexcenter;
+}
+
+.user:hover > .profile,
+.user:active > .profile {
+  display: grid;
+  z-index: $z-index-lg-next;
+}
+
+.profile {
+  display: none;
+  grid-row-gap: 1rem;
+  position: absolute;
+  top: 3.6rem;
+  right: -18rem;
+  transform: translateX(-50%);
+  background-color: $color-white;
+  border: 2px solid $color-bg-gray-20;
+  padding: 1rem 1.5rem;
+  transition: 0.3s;
+  box-shadow: $box-shawdow-light;
+
+  &__edit,
+  &__logout {
+    display: grid;
+    grid-template-columns: repeat(2, min-content max-content);
+    align-items: center;
+    color: rgba($color-text-gray-80, 0.7);
+    z-index: $z-index-lg-next;
+    text-transform: capitalize;
+    grid-column-gap: 3rem;
+
+    svg {
+      @include svg($svg-filter-gray);
+      justify-self: center;
+    }
+  }
+
+  &__name {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, min-content max-content);
+    align-items: center;
+    color: rgba($color-text-gray-80, 0.7);
+    z-index: $z-index-lg-next;
+    text-transform: capitalize;
+
+    .user__circle {
+      @include userprofile(5rem);
+      margin-right: 1rem;
+    }
+
+    .user__info-dtl {
+      display: flex;
+      flex-direction: column;
+
+      .email {
+        font-size: $small-font-size;
+        text-transform: lowercase;
+        font-weight: 400;
+      }
+    }
+
+    svg {
+      @include svg($svg-filter-gray);
+    }
+  }
+
+  &__logout:hover,
+  &__edit:hover,
+  &__name:hover {
+    color: map-get($color-primary, medium);
+  }
+}
+
+// Default overrides.
+.btn-login {
+  padding: 1rem;
+  text-transform: uppercase;
+  color: map-get($color-primary, medium);
+  background-color: $color-white;
+  border: 1px solid map-get($color-primary, medium);
+
+  @media only screen and (max-width: $bp-small) {
+    display: none;
+    order: 2;
+  }
+}
+
+.btn-login:hover,
+.btn-login:active {
+  color: $color-white;
+  background-color: map-get($color-primary, dark);
+}
+
+.line {
+  border-bottom: 1px solid $color-text-gray-40;
+  width: 118%;
+  transform: translateX(-8%);
+  overflow: hidden;
+}

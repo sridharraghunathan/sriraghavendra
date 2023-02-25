@@ -1,0 +1,54 @@
+
+<h2 class="heading-secondary">User Clarification</h2>
+<!-- User Clarification Entry will be displayed in the descending order -->
+<table id="table-contact" class="mr-md">
+  <tr>
+    <th>Id</th>
+    <th>FullName</th>
+    <th>MobileNumber</th>
+    <th>Email</th>
+    <th>Question</th>
+    <th>Send Email</th>
+  </tr>
+  <tr *ngFor="let user of userClarification$ | async">
+    <td>{{ user.id }}</td>
+    <td>{{ user.fullName }}</td>
+    <td>{{ user.mobileNumber }}</td>
+    <td>{{ user.email }}</td>
+
+    <td>{{ user.question }}</td>
+    <td (click)="onSendEmail(user)">
+      <svg>
+        <use xlink:href="assets/svg/sprite.svg#icon-mail2"></use>
+      </svg>
+    </td>
+  </tr>
+</table>
+
+<!-- Admin User Email and Password to be provided to send the email -->
+<div class="email-card" [ngClass]="{ active: isFormActive }">
+  <h2 class="heading-tertiary">Email Content</h2>
+  <span (click)="onclose()"><svg class="close-button">
+    <use xlink:href="assets/svg/sprite.svg#icon-cancel-circle"></use>
+  </svg></span>
+  <form #contactForm="ngForm" class="email-card__form" (ngSubmit)="onSubmit(contactForm)">
+    <label><u>User Question</u></label>
+    <label>{{ selectedUser?.question }}</label>
+
+    <label for="body">Email Content</label>
+    <textarea required class="input-text" rows="5" name="body" ngModel></textarea>
+
+    <label for="fromemail">From Email Address</label>
+    <input class="input-text" autocomplete="on" type="text" name="fromemail" ngModel />
+
+    <label for="password">Enter Your Password</label>
+    <input class="input-text" autocomplete="off" type="password" name="password" ngModel />
+
+    <button type="submit" class="btn btn-cta mr-bt-sm">
+      Send Email
+      <svg class="arrow-submit">
+        <use xlink:href="assets/svg/sprite.svg#icon-arrow-right2"></use>
+      </svg>
+    </button>
+  </form>
+</div>

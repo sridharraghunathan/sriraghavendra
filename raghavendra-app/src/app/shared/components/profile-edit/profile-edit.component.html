@@ -1,0 +1,104 @@
+<!-- Common Shared Component Used for Aradhana and Contact information components
+
+-->
+<section class="main-profile">
+  <form class="contact__form pd-lt-md" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <h2 class="heading-secondary pd-lt-md">Contact</h2>
+    <section class="personal-info">
+      <h3 class="full-length heading-tertiary">Personal Information</h3>
+      <app-text-input
+        class="full-length"
+        formControlName="fullName"
+        [isOptional]="false"
+        [isDisabled]="access"
+        [label]="'Full Name'"
+      ></app-text-input>
+      <app-text-input formControlName="email" [isOptional]="false" [isDisabled]="access" [label]="'Email Address'"></app-text-input>
+      <app-text-input formControlName="mobileNumber" [isOptional]="false" [isDisabled]="access" [label]="'Mobile Number'"></app-text-input>
+    </section>
+
+    <section class="location">
+      <h3 class="full-length heading-tertiary">Location</h3>
+      <app-text-input class="full-length" formControlName="address" [isOptional]="false" [isDisabled]="access" [label]="'Address'"></app-text-input>
+      <app-text-input formControlName="city" [isOptional]="false" [isDisabled]="access" [label]="'City'"></app-text-input>
+      <app-text-input formControlName="state" [isOptional]="false" [isDisabled]="access" [label]="'State'"></app-text-input>
+      <app-text-input formControlName="pincode" [isOptional]="false" [isDisabled]="access" [label]="'Pincode'"></app-text-input>
+      <app-text-input formControlName="country" [isDisabled]="access" [label]="'Country'"></app-text-input>
+      <!-- <app-text-input formControlName="country" [defaultValue]="'India'" [label]="'Country'"></app-text-input> -->
+    </section>
+
+    <section class="seva" *ngIf="componentType === 'aradhana'">
+      <h3 class="full-length heading-tertiary">Aradhana Seva</h3>
+      <app-text-input
+        class="full-length"
+        formControlName="additionalInformation"
+        [isDisabled]="access"
+        [label]="'Archana details'"
+        [type]="'textarea'"
+      ></app-text-input>
+      <ng-container *ngIf="modificationType !== 'new'">
+        <app-text-input formControlName="sevaName" [isDisabled]="access" [label]="'Seva'"></app-text-input>
+        <app-text-input formControlName="amount" [isDisabled]="access" [label]="'Amount'"></app-text-input>
+      </ng-container>
+    </section>
+    <!-- Aradhana component and donation routing and only submitting the data 
+  Has option to Add and View
+Button will be visible when the mode is edit
+-->
+    <button type="submit" *ngIf="!access && componentType === 'aradhana'" class="btn btn-cta mr-bt-sm">
+      submit
+      <svg class="arrow-submit">
+        <use xlink:href="assets/svg/sprite.svg#icon-arrow-right2"></use>
+      </svg>
+    </button>
+
+    <!-- Contact component on routing   
+  Has option to Add and View and Edit
+Button will be visible when the mode is Add / edit and View button not visible
+Access flags says whether its allowed to show add or edit button
+-->
+    <button type="submit" *ngIf="!access && componentType === 'contact' && modificationType === 'new'" class="btn btn-cta mr-bt-sm">
+      Add Contact
+      <svg class="arrow-submit">
+        <use xlink:href="assets/svg/sprite.svg#icon-arrow-right2"></use>
+      </svg>
+    </button>
+
+    <button type="submit" *ngIf="!access && componentType === 'contact' && modificationType === 'edit'" class="btn btn-cta mr-bt-sm">
+      Update Contact
+      <svg class="arrow-submit">
+        <use xlink:href="assets/svg/sprite.svg#icon-arrow-right2"></use>
+      </svg>
+    </button>
+  </form>
+</section>
+
+<!-- If Not Admin Show the below template -->
+
+<!-- Calculation Section -->
+<section *ngIf="!isAdmin" class="card-selected pd-tp-sm">
+  <h3 class="heading-tertiary pd-bt-md">Selected Seva List Summary</h3>
+  <div *ngFor="let selectedItem of consolidatedList" class="card-selected__order">
+    <span class="seva-name">{{ selectedItem.sevaName }}:</span>
+    <span>&#8377;{{ selectedItem.amount }}</span>
+  </div>
+  <div class="total">
+    <label>Total :</label>
+    <label class="amount">&#8377;{{ getTotal }}</label>
+  </div>
+  <div class="payment">
+    <h3 class="heading-tertiary mr-bt-md">Shri Guru Raghavendra Seva Trust</h3>
+    <p class="paragraph">Currently we dont have online payment support, Please proceed payment
+      to below mentioned account.we will notify you once amount is received.
+      Thanks in advance for your valuable contribution.
+    </p>
+    <div class="questions">
+      <span>In case of questions contact Phone: 94425-33900 / 94431-62857</span>
+    </div>
+
+    <div class="account__details">
+      <span>ACCOUNT Number: 11177873121</span>
+      <span>IFSC Code: SBIN0000832 </span>
+    </div>
+  </div>
+</section>
