@@ -29,7 +29,7 @@ namespace API.Helper
             // Skip the Authorization validation check if we enabler Allow Anonymous in the method
             if (context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any()) return;
             var headerToken = context.HttpContext.Request.Headers.SingleOrDefault(x => x.Key == _idsToken);
-            // try
+             // try
             // {
             //     if (headerToken.Key != null)
             //     {

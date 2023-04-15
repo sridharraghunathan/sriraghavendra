@@ -18,6 +18,8 @@ namespace API.Extensions
         /// <param name="services"></param>
         /// <param name="_configuration"></param>
         /// <returns></returns>
+
+        
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration _configuration)
         {
 

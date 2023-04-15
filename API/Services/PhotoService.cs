@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace API.Services
 {
+  
     public class PhotoService : IPhotoService
     {
         private readonly Cloudinary _cloudinary;
