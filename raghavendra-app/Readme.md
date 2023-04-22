@@ -1,5 +1,8 @@
-Modify this everytime in angular.json
+Modify this everytime in angular.
+"outputPath": "dist/raghavendra-app",
+with
 "outputPath": "../API/wwwroot/",
+
 1. Build the code which copy the code to the API folder of .NET CORE need to be run in angular folder
    ng build --prod
    A) Local testing dotnet run
