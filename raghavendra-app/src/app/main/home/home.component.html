@@ -30,8 +30,7 @@
   <a (click)="onSeeAll()" class="see-all mr-rt-xl">View All</a>
   <div *ngFor="let event of eventInfo" class="moveFromBottom card">
     <div class="event__date">
-      year | formatmypipe
-      <span> {{ event.day }}</span>
+       <span> {{ event.day }}</span>
       <span> {{ event.month }} {{ event.year }}</span>
     </div>
     <div class="event__info">
