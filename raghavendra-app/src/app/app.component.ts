@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
   playMusic() {
     if (this.initialPlay === 0) {
       this.initialPlay++;
-      (<HTMLAudioElement>document.getElementById('audio')).play();
+      // (<HTMLAudioElement>document.getElementById('audio')).play();
     }
   }
 
