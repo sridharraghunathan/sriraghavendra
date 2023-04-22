@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using API.Extensions;
 using API.Middleware;
 using Microsoft.AspNetCore.Builder;
@@ -53,6 +55,11 @@ namespace API
             .WithOrigins("https://localhost:4200"
             //,"https://localhost:5001"
             ));
+            // app.Run(async (context) =>
+            // {
+            //     Console.WriteLine("Terminal");
+            //     await Task.Delay(100);
+            // });
 
             // After Routing the Authentication after that Authorization
             app.UseAuthentication();
