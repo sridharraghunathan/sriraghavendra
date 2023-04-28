@@ -23,7 +23,9 @@ ENV PATH ${PWD_DIR}/node_modules/.bin:$PATH
 WORKDIR ${PWD_DIR}
 #copy only package file to avoid the npm rebuild when we run again.
 COPY ./raghavendra-app/package.json ./angularapp/
-RUN cd ./angularapp/ && npm config set legacy-peer-deps true && npm install @angular/cli@11 && npm install --save --legacy-peer-deps && npm run build:prod
+RUN cd ./angularapp/ && npm config set legacy-peer-deps true && npm install @angular/cli@11 && npm install --save --legacy-peer-deps
+COPY ./raghavendra-app/. ./angularapp/
+RUN  cd ./angularapp/. && npm run build:prod
 #copy the build file in the dist folder
 ##COPY ./raghavendra-app/dist/raghavendra-app ./angularapp/
 #aspnet image for running the .NET APPLICATION AND WWWROOT has angular build code
